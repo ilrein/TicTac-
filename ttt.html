@@ -104,7 +104,7 @@
 			text-align: center;
 		}
 
-		div div {
+		.square {
 			margin:1px;
 			width: 166px;
 			height: 166px;
@@ -136,6 +136,7 @@
       left:50%;
       margin-left: -25%;
       height: 80%;
+      border-radius: 12px 12px 12px 12px;
     }
 	}
 </style>
@@ -166,7 +167,7 @@
 			location.reload();
 		});	
 
-		$("div div").on("click", function(){
+		$(".square").on("click", function(){
 			z += 1;
 			if (z%2===0) {
 				zz = 'X';
@@ -237,6 +238,7 @@
 
 			if(victor === true) {
 				$('.victory').slideToggle([100]);
+        // $('.gameboard').off("click");
 			}
 
 		});	
@@ -253,15 +255,15 @@
 	</div>
 	<h1>Game On!</h1>
 	<div class="gameboard">
-		<div id="a11"></div>
-		<div id="a12"></div>
-		<div id="a13"></div>
-		<div id="a21"></div>
-		<div id="a22"></div>
-		<div id="a23"></div>
-		<div id="a31"></div>
-		<div id="a32"></div>
-		<div id="a33"></div>
+		<div id="a11" class="square"></div>
+		<div id="a12" class="square"></div>
+		<div id="a13" class="square"></div>
+		<div id="a21" class="square"></div>
+		<div id="a22" class="square"></div>
+		<div id="a23" class="square"></div>
+		<div id="a31" class="square"></div>
+		<div id="a32" class="square"></div>
+		<div id="a33" class="square"></div>
 	</div>
 	
 	
