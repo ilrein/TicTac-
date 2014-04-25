@@ -1,0 +1,154 @@
+<html>
+<head>
+	<title>the title</title>
+	<style>
+		body {
+			background-color: #D1EEE5;
+		}
+		h1 {
+			text-align: center;
+		}
+		.victory {
+			background-color: #000000;
+			border: solid;
+			position:fixed;
+			top:0px;
+			left:0px;
+		}
+		.gameboard {
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.yolo {
+			background-color: #fff;
+		}
+		.picked {
+			background-color: #c4ccbe;
+		}
+		div {
+
+			width: 300px;
+			height: 600px;
+			text-align: center;
+			line-height: 6;
+		}
+
+		div div {
+			width: 100px;
+			height: 100px;
+			outline: 1px solid;
+			float: left;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script>
+		var top_row = [];
+		var mid_row = [];
+		var bot_row = [];
+		var top_col = [];
+		var bot_col = [];
+		var mid_col = [];
+		var left_dia = [];
+		var right_dia = [];
+		var victor = new Boolean ();
+			victor = false;
+
+		$(document).ready(function() {
+			$('.victory').hide();
+				
+			
+				if(victor == "true") {
+					$('.victory').slideDown();
+				}
+			
+			var z = 0;
+			var zz = 'x';
+			$("div div").click(function(event){
+
+				z += 1;
+				if (z%2===0) {
+					zz = 'X';
+				} else {
+					zz = 'O';
+				}
+				$(this).addClass('picked').text(zz);
+
+				var kvp = $(this).attr('id');
+
+				if (kvp === '11' || kvp === '12' || kvp === '13') {
+					top_row.push(zz);
+					if (top_row[0] === top_row[1] && top_row[1] === top_row[2]) {
+						victor = true;
+					}
+				}
+				else if (kvp === '21' || kvp === '22' || kvp === '23') {
+					mid_row.push(zz);
+					if (mid_row[0] === mid_row[1] && mid_row[1] === mid_row[2]) {
+						victor = true;
+					};
+
+				}
+				else if (kvp === '31' || kvp === '32' || kvp === '33') {
+					bot_row.push(zz);
+					if (bot_row[0] === bot_row[1] && bot_row[1] === bot_row[2]) {
+						victor = true;
+					};
+
+				}
+				else if (kvp === '11' || kvp === '21' || kvp === '31') {
+					top_col.push(zz);
+					if (top_col[0] === top_col[1] && top_col[1] === top_col[2]) {
+						victor = true;
+					};
+
+				}
+				else if (kvp === '12' || kvp === '22' || kvp === '32') {
+					mid_col.push(zz);
+					if (mid_col[0] === mid_col[1] && mid_col[1] === mid_col[2]) {
+						victor = true;
+					};
+
+				}
+				else if (kvp === '13' || kvp === '23' || kvp === '33') {
+					bot_col.push(zz);
+					if (bot_col[0] === bot_col[1] && bot_col[1] === bot_col[2]) {
+						victor = true;
+					};
+
+				}
+				else if (kvp === '11' || kvp === '22' || kvp === '33') {
+					left_dia.push(zz);
+					if (left_dia[0] === left_dia[1] && left_dia[1] === left_dia[2]) {
+						victor = true;
+					};
+
+				}
+				else if (kvp === '13' || kvp === '22' || kvp === '31') {
+					right_dia.push(zz);
+					if (right_dia[0] === right_dia[1] && right_dia[1] === right_dia[2]) {
+						victor = true;
+					};
+
+				};
+
+			});	
+});		
+</script>
+</head>
+<body>
+	<h1>GAME ON</h1>
+	<div class="gameboard">
+		<div id="11"></div>
+		<div id="12"></div>
+		<div id="13"></div>
+		<div id="21"></div>
+		<div id="22"></div>
+		<div id="23"></div>
+		<div id="31"></div>
+		<div id="32"></div>
+		<div id="33"></div>
+	</div>
+	<div class="victory"></div>
+</body>
+</html>
