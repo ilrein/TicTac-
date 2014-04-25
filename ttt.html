@@ -17,6 +17,7 @@
     h2 {
       font-family: tangerine, sans-serif;
     }
+
 		.container {
 			margin-left:auto;
 			margin-right:auto;
@@ -36,49 +37,7 @@
 			height: 100%;
 			position:fixed;
 		}
-		#replay {
-			-moz-box-shadow:inset 0px 1px 0px 0px #e6cafc;
-			-webkit-box-shadow:inset 0px 1px 0px 0px #e6cafc;
-			box-shadow:inset 0px 1px 0px 0px #e6cafc;
-			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c579ff), color-stop(1, #a341ee) );
-			background:-moz-linear-gradient( center top, #c579ff 5%, #a341ee 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c579ff', endColorstr='#a341ee');
-			background-color:#c579ff;
-			-webkit-border-top-left-radius:42px;
-			-moz-border-radius-topleft:42px;
-			border-top-left-radius:42px;
-			-webkit-border-top-right-radius:0px;
-			-moz-border-radius-topright:0px;
-			border-top-right-radius:0px;
-			-webkit-border-bottom-right-radius:42px;
-			-moz-border-radius-bottomright:42px;
-			border-bottom-right-radius:42px;
-			-webkit-border-bottom-left-radius:0px;
-			-moz-border-radius-bottomleft:0px;
-			border-bottom-left-radius:0px;
-			text-indent:0;
-			display:inline-block;
-			color:#ffffff;
-			font-family:Arial;
-			font-size:15px;
-			font-weight:bold;
-			font-style:normal;
-			height:50px;
-			line-height:50px;
-			width:83px;
-			text-decoration:none;
-			text-align:center;
-			text-shadow:1px 1px 0px #8628ce;
-		}
-		#replay:hover {
-			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a341ee), color-stop(1, #c579ff) );
-			background:-moz-linear-gradient( center top, #a341ee 5%, #c579ff 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a341ee', endColorstr='#c579ff');
-			background-color:#a341ee;
-		}#replay:active {
-			position:relative;
-			top:1px;
-		}
+		
 		.gameboard {
 			margin-left:auto;
 			margin-right:auto;
@@ -138,7 +97,78 @@
       height: 80%;
       border-radius: 12px 12px 12px 12px;
     }
-	}
+        div.tied {
+      /*
+      float:left;
+      
+      top:0px;
+      padding-top: 10px;
+      padding-left: 10px;*/
+      top:0;
+      left:0;
+      background-color: #338f92;
+      width: 100%;
+      height: 100%;
+      position:fixed;
+    }
+    .inner-tie {
+      width:50%;
+      margin-top: 50px;
+      background-color: #FFF;
+      opacity: 0.7;
+      padding: 15px;
+      position: relative;
+      left:50%;
+      margin-left: -25%;
+      height: 80%;
+      border-radius: 12px 12px 12px 12px;
+    }
+	
+
+  .replay {
+  -moz-box-shadow:inset 0px 1px 0px 0px #96eb4c;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #96eb4c;
+  box-shadow:inset 0px 1px 0px 0px #96eb4c;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9dce2c), color-stop(1, #8cb82b) );
+  background:-moz-linear-gradient( center top, #9dce2c 5%, #8cb82b 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9dce2c', endColorstr='#8cb82b');
+  background-color:#9dce2c;
+  -webkit-border-top-left-radius:42px;
+  -moz-border-radius-topleft:42px;
+  border-top-left-radius:42px;
+  -webkit-border-top-right-radius:42px;
+  -moz-border-radius-topright:42px;
+  border-top-right-radius:42px;
+  -webkit-border-bottom-right-radius:42px;
+  -moz-border-radius-bottomright:42px;
+  border-bottom-right-radius:42px;
+  -webkit-border-bottom-left-radius:42px;
+  -moz-border-radius-bottomleft:42px;
+  border-bottom-left-radius:42px;
+  text-indent:0;
+  border:1px solid #83c41a;
+  display:inline-block;
+  color:#ffffff;
+  font-family:Georgia;
+  font-size:15px;
+  font-weight:bold;
+  font-style:normal;
+  height:50px;
+  line-height:50px;
+  width:100px;
+  text-decoration:none;
+  text-align:center;
+  text-shadow:1px 1px 0px #689324;
+}
+.replay:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8cb82b), color-stop(1, #9dce2c) );
+  background:-moz-linear-gradient( center top, #8cb82b 5%, #9dce2c 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb82b', endColorstr='#9dce2c');
+  background-color:#8cb82b;
+}.replay:active {
+  position:relative;
+  top:1px;
+
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -158,15 +188,10 @@
 
 	$(document).ready(function() {
 		$('h1').fadeIn(330).fadeOut(330).fadeIn(330).fadeIn(330).fadeOut(330).fadeIn(330).fadeIn(330);
-
+    $('.tied').hide(); 
 		$('.victory').hide();			
 		var z = 0;
 		var zz = 'x';
-
-		$('#replay').click(function() {
-			location.reload();
-		});	
-
 		$(".square").on("click", function(){
 			z += 1;
 			if (z%2===0) {
@@ -238,8 +263,19 @@
 
 			if(victor === true) {
 				$('.victory').slideToggle([100]);
-        // $('.gameboard').off("click");
 			}
+
+      if ( top_row.length === 3 && mid_row.length === 3 && bot_row.length === 3 && left_col.length === 3 && mid_col.length === 3 && right_col.length === 3 && left_dia.length === 3 && right_dia.length === 3 ) {
+        tie_game = true;
+      }
+
+      if(tie_game === true) {
+        $('.tied').slideToggle([100]);
+      }
+
+      $('.replay').click(function() {
+      location.reload();
+    }); 
 
 		});	
 });		
@@ -250,9 +286,15 @@
 		<div class="inner-vic">
 			<h2>Victor!</h2>
 			<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRodfbKPkMMyn1srqQgxfbjfduYqFJYNw5PbZFZPVDvfSKgzxpbDA" /><br><br><br>
-			<button id="replay">Replay</button>
+			<button class="replay">Replay</button>
 		</div>
 	</div>
+  <div class="tied">
+    <div class="inner-tie">
+      <h2>Tie game!</h2>
+      <button class="replay">Replay</button>
+    </div>
+  </div>
 	<h1>Game On!</h1>
 	<div class="gameboard">
 		<div id="a11" class="square"></div>
