@@ -1,177 +1,269 @@
 <html>
 <head>
 	<title>the title</title>
-	<link href='http://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+	<script src="http://use.edgefonts.net/tangerine.js"></script>
 	<style>
 		body {
-			background-color: #fff;
+			background-color: #570300;
+			font-size: 2.4em;
 		}
 		h1 {
+      padding-top: 25px;
+			line-height: 50px;
+			color:#F3A004;
 			text-align: center;
-			font-family: 'Abril Fatface', 'cursive';
+			font-family: tangerine, sans-serif;
 		}
+    h2 {
+      font-family: tangerine, sans-serif;
+    }
 		.container {
 			margin-left:auto;
 			margin-right:auto;
 			margin-top: 5%;
 		}
 		div.victory {
-			content:url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRodfbKPkMMyn1srqQgxfbjfduYqFJYNw5PbZFZPVDvfSKgzxpbDA");
+			/*
 			float:left;
-			position:absolute;
+			
 			top:0px;
+			padding-top: 10px;
+			padding-left: 10px;*/
+			top:0;
+			left:0;
+			background-color: #338f92;
+			width: 100%;
+			height: 100%;
+			position:fixed;
+		}
+		#replay {
+			-moz-box-shadow:inset 0px 1px 0px 0px #e6cafc;
+			-webkit-box-shadow:inset 0px 1px 0px 0px #e6cafc;
+			box-shadow:inset 0px 1px 0px 0px #e6cafc;
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c579ff), color-stop(1, #a341ee) );
+			background:-moz-linear-gradient( center top, #c579ff 5%, #a341ee 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c579ff', endColorstr='#a341ee');
+			background-color:#c579ff;
+			-webkit-border-top-left-radius:42px;
+			-moz-border-radius-topleft:42px;
+			border-top-left-radius:42px;
+			-webkit-border-top-right-radius:0px;
+			-moz-border-radius-topright:0px;
+			border-top-right-radius:0px;
+			-webkit-border-bottom-right-radius:42px;
+			-moz-border-radius-bottomright:42px;
+			border-bottom-right-radius:42px;
+			-webkit-border-bottom-left-radius:0px;
+			-moz-border-radius-bottomleft:0px;
+			border-bottom-left-radius:0px;
+			text-indent:0;
+			display:inline-block;
+			color:#ffffff;
+			font-family:Arial;
+			font-size:15px;
+			font-weight:bold;
+			font-style:normal;
+			height:50px;
+			line-height:50px;
+			width:83px;
+			text-decoration:none;
+			text-align:center;
+			text-shadow:1px 1px 0px #8628ce;
+		}
+		#replay:hover {
+			background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a341ee), color-stop(1, #c579ff) );
+			background:-moz-linear-gradient( center top, #a341ee 5%, #c579ff 100% );
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a341ee', endColorstr='#c579ff');
+			background-color:#a341ee;
+		}#replay:active {
+			position:relative;
+			top:1px;
 		}
 		.gameboard {
 			margin-left:auto;
 			margin-right:auto;
-			background-color: #e3ece3;
+			background-color: #F37603;
+			border-radius: 12px;
 		}
 		.yolo {
-			background-color: #c4ccbe; 
+			background-color: #ec7d9f; 
 			font-size: 65px;
-			line-height: 1.5;
+			line-height: 2.6;
 			color:red;
 		}
 		.picked {
-			background-color: #c4ccbe; 
+			background-color: #aeb7ec; 
 			font-size: 65px;
-			line-height: 1.5;
+			line-height: 2.6;
 			color:blue;
 		}
 		div {
 
-			width: 300px;
-			height: 300px;
+			width: 510px;
+			height: 510px;
 			text-align: center;
-			
 		}
 
 		div div {
-			width: 100px;
-			height: 100px;
-			outline: 1px solid;
+			margin:1px;
+			width: 166px;
+			height: 166px;
+			border: 1px solid;
 			float: left;
+			background-color: #F0E106;
 		}
-	</style>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	
-	
-	<script>
-		var top_row = [];
-		var mid_row = [];
-		var bot_row = [];
-		var left_col = [];
-		var mid_col = [];
-		var right_col = [];
-		var left_dia = [];
-		var right_dia = [];
-		var victor = new Boolean ();
-		victor = false;
-		var tie_game = new Boolean ();
-		tie_game = false;
+		#a11 {
+			border-radius: 12px 0 0 0;
+		}
 
-		$(document).ready(function() {
-			$('.victory').hide();			
-			var z = 0;
-			var zz = 'x';
+		#a31 {
+			border-radius: 0 0 0 12px;
+		}
 
-			$('#Replay').click(function() {
-				location.reload();
-			});	
+		#a13 {
+			border-radius: 0 12px 0 0;
+		}
+		#a33 {
+			border-radius: 0 0 12px 0;
+		}
+    .inner-vic {
+      width:50%;
+      margin-top: 50px;
+      background-color: #FFF;
+      opacity: 0.7;
+      padding: 15px;
+      position: relative;
+      left:50%;
+      margin-left: -25%;
+      height: 80%;
+    }
+	}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-			$("div div").click(function(){
-				z += 1;
-				if (z%2===0) {
-					zz = 'X';
-					$(this).addClass('picked').text(zz);
-				} else {
-					zz = 'O';
-					$(this).addClass('yolo').text(zz);
+<script>
+	var top_row = [];
+	var mid_row = [];
+	var bot_row = [];
+	var left_col = [];
+	var mid_col = [];
+	var right_col = [];
+	var left_dia = [];
+	var right_dia = [];
+	var victor = new Boolean ();
+	victor = false;
+	var tie_game = new Boolean ();
+	tie_game = false;
+
+	$(document).ready(function() {
+		$('h1').fadeIn(330).fadeOut(330).fadeIn(330).fadeIn(330).fadeOut(330).fadeIn(330).fadeIn(330);
+
+		$('.victory').hide();			
+		var z = 0;
+		var zz = 'x';
+
+		$('#replay').click(function() {
+			location.reload();
+		});	
+
+		$("div div").on("click", function(){
+			z += 1;
+			if (z%2===0) {
+				zz = 'X';
+				$(this).addClass('picked').text(zz);
+			} else {
+				zz = 'O';
+				$(this).addClass('yolo').text(zz);
+			}
+			$(this).off("click");
+
+			var x_y_point = $(this).attr('id');
+
+			if (x_y_point === 'a11' || x_y_point === 'a12' || x_y_point === 'a13') {
+				top_row.push(zz);
+				if (top_row[0] === top_row[1] && top_row[1] === top_row[2]) {
+					victor = true;
 				}
-				
-
-				var x_y_point = $(this).attr('id');
-
-				if (x_y_point === '11' || x_y_point === '12' || x_y_point === '13') {
-					top_row.push(zz);
-					if (top_row[0] === top_row[1] && top_row[1] === top_row[2]) {
-						victor = true;
-					}
-				}
-				 if (x_y_point === '21' || x_y_point === '22' || x_y_point === '23') {
-					mid_row.push(zz);
-					if (mid_row[0] === mid_row[1] && mid_row[1] === mid_row[2]) {
-						victor = true;
-					};
-
-				}
-				 if (x_y_point === '31' || x_y_point === '32' || x_y_point === '33') {
-					bot_row.push(zz);
-					if (bot_row[0] === bot_row[1] && bot_row[1] === bot_row[2]) {
-						victor = true;
-					};
-
-				}
-				 if (x_y_point === '11' || x_y_point === '21' || x_y_point === '31') {
-					left_col.push(zz);
-					if (left_col[0] === left_col[1] && left_col[1] === left_col[2]) {
-						victor = true;
-					};
-
-				}
-				 if (x_y_point === '12' || x_y_point === '22' || x_y_point === '32') {
-					mid_col.push(zz);
-					if (mid_col[0] === mid_col[1] && mid_col[1] === mid_col[2]) {
-						victor = true;
-					};
-
-				}
-				 if (x_y_point === '13' || x_y_point === '23' || x_y_point === '33') {
-					right_col.push(zz);
-					if (right_col[0] === right_col[1] && right_col[1] === right_col[2]) {
-						victor = true;
-					};
-
-				}
-				 if (x_y_point === '11' || x_y_point === '22' || x_y_point === '33') {
-					left_dia.push(zz);
-					if (left_dia[0] === left_dia[1] && left_dia[1] === left_dia[2]) {
-						victor = true;
-					};
-
-				}
-				 if (x_y_point === '13' || x_y_point === '22' || x_y_point === '31') {
-					right_dia.push(zz);
-					if (right_dia[0] === right_dia[1] && right_dia[1] === right_dia[2]) {
-						victor = true;
-					};
-
+			}
+			if (x_y_point === 'a21' || x_y_point === 'a22' || x_y_point === 'a23') {
+				mid_row.push(zz);
+				if (mid_row[0] === mid_row[1] && mid_row[1] === mid_row[2]) {
+					victor = true;
 				};
 
-				if(victor === true) {
-					$('.victory').slideDown();
-				}
+			}
+			if (x_y_point === 'a31' || x_y_point === 'a32' || x_y_point === 'a33') {
+				bot_row.push(zz);
+				if (bot_row[0] === bot_row[1] && bot_row[1] === bot_row[2]) {
+					victor = true;
+				};
 
-			});	
+			}
+			if (x_y_point === 'a11' || x_y_point === 'a21' || x_y_point === 'a31') {
+				left_col.push(zz);
+				if (left_col[0] === left_col[1] && left_col[1] === left_col[2]) {
+					victor = true;
+				};
+
+			}
+			if (x_y_point === 'a12' || x_y_point === 'a22' || x_y_point === 'a32') {
+				mid_col.push(zz);
+				if (mid_col[0] === mid_col[1] && mid_col[1] === mid_col[2]) {
+					victor = true;
+				};
+
+			}
+			if (x_y_point === 'a13' || x_y_point === 'a23' || x_y_point === 'a33') {
+				right_col.push(zz);
+				if (right_col[0] === right_col[1] && right_col[1] === right_col[2]) {
+					victor = true;
+				};
+
+			}
+			if (x_y_point === 'a11' || x_y_point === 'a22' || x_y_point === 'a33') {
+				left_dia.push(zz);
+				if (left_dia[0] === left_dia[1] && left_dia[1] === left_dia[2]) {
+					victor = true;
+				};
+
+			}
+			if (x_y_point === 'a13' || x_y_point === 'a22' || x_y_point === 'a31') {
+				right_dia.push(zz);
+				if (right_dia[0] === right_dia[1] && right_dia[1] === right_dia[2]) {
+					victor = true;
+				};
+
+			};
+
+			if(victor === true) {
+				$('.victory').slideToggle([100]);
+			}
+
+		});	
 });		
 </script>
 </head>
 <body>
-	<h1>GAME ON</h1>
+	<div class="victory">
+		<div class="inner-vic">
+			<h2>Victor!</h2>
+			<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRodfbKPkMMyn1srqQgxfbjfduYqFJYNw5PbZFZPVDvfSKgzxpbDA" /><br><br><br>
+			<button id="replay">Replay</button>
+		</div>
+	</div>
+	<h1>Game On!</h1>
 	<div class="gameboard">
-		<div id="11"></div>
-		<div id="12"></div>
-		<div id="13"></div>
-		<div id="21"></div>
-		<div id="22"></div>
-		<div id="23"></div>
-		<div id="31"></div>
-		<div id="32"></div>
-		<div id="33"></div>
+		<div id="a11"></div>
+		<div id="a12"></div>
+		<div id="a13"></div>
+		<div id="a21"></div>
+		<div id="a22"></div>
+		<div id="a23"></div>
+		<div id="a31"></div>
+		<div id="a32"></div>
+		<div id="a33"></div>
 	</div>
-	<div class="victory"></div>
-	<div class="container">
-		<button id="Replay">Replay</button>
-	</div>
+	
+	
 </body>
 </html>
